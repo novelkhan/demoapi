@@ -1,0 +1,59 @@
+﻿@model IEnumerable<demoapiconsume.Models.EmployeeModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@if (TempData["AlertMsg"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success !</strong>@TempData["AlertMsg"]
+    </div>
+}
+
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditEmployee", new { id = item.EmployeeId }) |
+                @Html.ActionLink("Details", "GetEmployee", new {  id = item.EmployeeId }) |
+                @Html.ActionLink("Delete", "DeleteEmployee", new {  id = item.EmployeeId })
+            </td>
+
+            @*<td>
+                <a asp-controller="Employee" asp-action="EditEmployee" asp-route-id="@item.EmployeeId">Edit</a> |
+                <a asp-action="GetEmployee" asp-route-id="@item.EmployeeId">Details</a> |
+                <a asp-action="DeleteEmployee" asp-route-id="@item.EmployeeId">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>
